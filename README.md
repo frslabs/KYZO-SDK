@@ -49,43 +49,29 @@ Register the KYZO in Info.plist with the some custom name (Eg: KYZOApp) like bel
 </array>
 ```
 
+Below property list is to be used to communicate between SDK and KYZO App:
+
+This is used in SDK with the registered name of KYZO.
+```
+<key>LSApplicationQueriesSchemes</key>
+<array>
+   <string>KYZOApp</string>
+</array>
+```
+
+This is used in KYZO App with the registered name of SDK.
+
+```
+<key>LSApplicationQueriesSchemes</key>
+<array>
+   <string>DemoSDK</string>
+</array>
+```
+
 ## Usage example
 
 ```swift
-Add function in your AppDelegate , should look like that:
 
-class AppDelegate: UIResponder, UIApplicationDelegate {
-
-    var window: UIWindow?
-    var openUrl:NSURL?
-    
-    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        self.openUrl = url as NSURL?
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "HANDLEOPENURL"), object: url)
-        return true
-    }
-    }
-    
-   Add function in your ViewController Class , should look like that:
-   class ViewController: UIViewController {
-     override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        NotificationCenter.default.addObserver(self, selector: #selector(handleOpenURL(notification:)), name: NSNotification.Name(rawValue: "HANDLEOPENURL"), object: nil)
-        let delegate = UIApplication.shared.delegate as? AppDelegate
-        if (delegate?.openUrl) != nil{
-            delegate?.openUrl = nil
-        }
-    }
-    @objc func handleOpenURL(notification:NSNotification){
-        print("handle url called")
-        if let url = notification.object as? NSURL{
-            receivedString = (((url.absoluteString)?.removingPercentEncoding)!).replacingOccurrences(of: "KYZODataReceiver://", with: "")
-           // print("KYZO RECEIVER ",receivedString)
-        }
-    }
-    }
-    }
 
 
 ```
