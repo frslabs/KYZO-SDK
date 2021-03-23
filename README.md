@@ -18,18 +18,20 @@ KYZO SDK can be used to integrate by native applications to request documents fr
 
 ## Installation
 
-#### CocoaPods
-You can use [CocoaPods](http://cocoapods.org/) to install `Forus` by adding it to your `Podfile`:
+URL Schemes:
 
-```ruby
-source 'https://gitlab.com/frslabs-public/ios/forus.git'
-source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '11.0'
-target '<Your Target Name>' do
-use_frameworks!
-pod 'Forus', '2.3.0'
-end
-```
+Register the SDK in Info.plist with the some custom name (Eg: DemoApp) like below:
+
+<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>DemoApp</string>
+			</array>
+		</dict>
+	</array>
+
 
 ## Usage example
 
