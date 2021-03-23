@@ -24,14 +24,14 @@ Register the SDK in Info.plist with the some custom name (Eg: DemoApp) like belo
 
 ```
 <key>CFBundleURLTypes</key>
-	<array>
-		<dict>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>DemoApp</string>
-			</array>
-		</dict>
-	</array>
+<array>
+   <dict>
+     <key>CFBundleURLSchemes</key> 
+     <array>
+	<string>KYZODataReceiver</string>
+     </array>
+   </dict>
+</array>
 ```
 
 ## Usage example
