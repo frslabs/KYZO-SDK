@@ -71,7 +71,7 @@ This is used in KYZO App with the registered name of SDK.
 ## Usage example
 
 ```swift
-
+This is used in KYZO App with the.
 
 
 ```
