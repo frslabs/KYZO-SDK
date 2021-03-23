@@ -52,6 +52,7 @@ Register the KYZO in Info.plist with the some custom name (Eg: KYZOApp) like bel
 ## Usage example
 
 ```swift
+Register the KYZO in Info.:
 
 
 ```
