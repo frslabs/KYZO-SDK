@@ -22,6 +22,7 @@ URL Schemes:
 
 Register the SDK in Info.plist with the some custom name (Eg: DemoApp) like below:
 
+```
 <key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -31,7 +32,7 @@ Register the SDK in Info.plist with the some custom name (Eg: DemoApp) like belo
 			</array>
 		</dict>
 	</array>
-
+```
 
 ## Usage example
 
