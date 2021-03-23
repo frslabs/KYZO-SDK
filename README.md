@@ -64,7 +64,7 @@ This is used in KYZO App with the registered name of SDK.
 ```
 <key>LSApplicationQueriesSchemes</key>
 <array>
-   <string>KYZOApp</string>
+   <string>DemoSDK</string>
 </array>
 ```
 
