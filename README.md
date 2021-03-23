@@ -65,6 +65,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     }
+    
+   Add function in your ViewController Class , should look like that:
+   class ViewController: UIViewController {
+     override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view.
+        NotificationCenter.default.addObserver(self, selector: #selector(handleOpenURL(notification:)), name: NSNotification.Name(rawValue: "HANDLEOPENURL"), object: nil)
+        let delegate = UIApplication.shared.delegate as? AppDelegate
+        if (delegate?.openUrl) != nil{
+            delegate?.openUrl = nil
+        }
+    }
+    @objc func handleOpenURL(notification:NSNotification){
+        print("handle url called")
+        if let url = notification.object as? NSURL{
+            receivedString = (((url.absoluteString)?.removingPercentEncoding)!).replacingOccurrences(of: "KYZODataReceiver://", with: "")
+           // print("KYZO RECEIVER ",receivedString)
+        }
+    }
+    }
 
 
 ```
