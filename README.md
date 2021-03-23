@@ -18,9 +18,10 @@ KYZO SDK can be used to integrate by native applications to request documents fr
 
 ## Installation
 
-URL Schemes:
+URL Schemes: 
+This is used to communicate between SDK and KYZO App.
 
-Register the SDK in Info.plist with the some custom name (Eg: DemoApp) like below:
+Register the SDK in Info.plist with the some custom name (Eg: DemoSDK) like below:
 
 ```
 <key>CFBundleURLTypes</key>
@@ -28,7 +29,21 @@ Register the SDK in Info.plist with the some custom name (Eg: DemoApp) like belo
    <dict>
      <key>CFBundleURLSchemes</key> 
      <array>
-	<string>DemoApp</string>
+	<string>DemoSDK</string>
+     </array>
+   </dict>
+</array>
+```
+
+Register the KYZO in Info.plist with the some custom name (Eg: KYZOApp) like below:
+
+```
+<key>CFBundleURLTypes</key>
+<array>
+   <dict>
+     <key>CFBundleURLSchemes</key> 
+     <array>
+	<string>KYZOApp</string>
      </array>
    </dict>
 </array>
