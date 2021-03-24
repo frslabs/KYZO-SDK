@@ -68,11 +68,30 @@ UIApplication.shared.open(NSURL(string: url2!)! as URL, options: [:], completion
 ``` 
 - Add this in Appdelegate of Demo SDK
 ```swift
-var openUrl:NSURL?
+    var openUrl:NSURL?
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         self.openUrl = url as NSURL?
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "HANDLEOPENURL"), object: url)
         return true
+    }
+```
+- Add this in viewcontroller.swift where you wanted to show the Result.
+```swift
+    var receivedString = String()
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view.
+        NotificationCenter.default.addObserver(self, selector: #selector(handleOpenURL(notification:)), name: NSNotification.Name(rawValue: "HANDLEOPENURL"), object: nil)
+        let delegate = UIApplication.shared.delegate as? AppDelegate
+        if (delegate?.openUrl) != nil {
+            delegate?.openUrl = nil
+        }
+    }
+    @objc func handleOpenURL(notification:NSNotification){
+        print("handle url called")
+        if let url = notification.object as? NSURL{
+            receivedString = (((url.absoluteString)?.removingPercentEncoding)!).replacingOccurrences(of: "DemoSDK://", with: "")
+        }
     }
 ```
 ## SDK Result
