@@ -162,7 +162,11 @@ UIApplication.shared.open(NSURL(string: url2!)! as URL, options: [:], completion
      
 ```     
 ## SDK Result
-  
+  The data will reside in dataArray and imageArray.
+  Sample Output:
+  dataArray --> ["name : John smith", "address : 355,2ndfloor,5thmain,karnataka,560071", "dateofbirth : 09/03/1993", "gender : Male", "phonenumber : 9704258166"]
+  imageArray --> [<UIImage: 0x280b49ce0>, {960, 590}, <UIImage: 0x280b4aa70>, {772, 633}, <UIImage: 0x280b4dd50>, {831, 496}, <UIImage: 0x280b4dea0>, {923, 557}, <UIImage: 0x280b4abc0>, {598, 938}, <UIImage: 0x280b4dff0>, {562, 881}, <UIImage: 0x280b4e140>, {322, 407}]
+
 ## Help
 
 For any queries/feedback , contact us at `support@frslabs.com` 
