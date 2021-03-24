@@ -66,7 +66,7 @@ let url1 = ("DemoSDK://"+kyzoSDKString).   // DemoSDK has requested the Document
 let url2 = url1.addingPercentEncoding(withAllowedCharacters: (NSCharacterSet.urlQueryAllowed))
 UIApplication.shared.open(NSURL(string: url2!)! as URL, options: [:], completionHandler: nil)
 ``` 
-- Add this in Appdelegate of Demo SDK
+- Add this in AppDelegate of Demo SDK
 ```swift
     var openUrl:NSURL?
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
