@@ -80,7 +80,6 @@ UIApplication.shared.open(NSURL(string: url2!)! as URL, options: [:], completion
     var receivedString = String()
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         NotificationCenter.default.addObserver(self, selector: #selector(handleOpenURL(notification:)), name: NSNotification.Name(rawValue: "HANDLEOPENURL"), object: nil)
         let delegate = UIApplication.shared.delegate as? AppDelegate
         if (delegate?.openUrl) != nil {
@@ -88,7 +87,6 @@ UIApplication.shared.open(NSURL(string: url2!)! as URL, options: [:], completion
         }
     }
     @objc func handleOpenURL(notification:NSNotification){
-        print("handle url called")
         if let url = notification.object as? NSURL{
             receivedString = (((url.absoluteString)?.removingPercentEncoding)!).replacingOccurrences(of: "DemoSDK://", with: "")
         }
@@ -96,9 +94,73 @@ UIApplication.shared.open(NSURL(string: url2!)! as URL, options: [:], completion
 ```
 ## SDK Result
 
+- Add the below funtions to retrieve the documents Data.
+- "dataArray" --> Where the name,address,dob,phone number,gender will reside
+- "imageArray" --> Where the images of PAN,passport,Aaadhaar,Voter ID,PHOTO will reside
 ```swift
-
-   
+    var imageArray = [UIImage]()
+    var dataArray = [String]()
+    @objc func handleOpenURL(notification:NSNotification){
+        if let url = notification.object as? NSURL{
+            receivedString = (((url.absoluteString)?.removingPercentEncoding)!).replacingOccurrences(of: "DemoSDK://", with: "")
+	    parseData(param: convertStringToDictionary(text: receivedString)!)
+        }
+    }
+   func convertStringToDictionary(text: String) -> [String:AnyObject]? {
+        if let data = text.data(using: .utf8) {
+            do {
+                let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String:AnyObject]
+                return json
+            } catch {
+                print("Something went wrong")
+            }
+        }
+        return nil
+    }
+    func parseData(param:[String:AnyObject]){
+        if let name = param["name"]{
+            dataArray.append("name : " + (name as? String ?? ""))
+        }
+        if let address = param["address"]{
+            dataArray.append("address : " + (address as? String ?? ""))
+        }
+        if let dateofbirth = param["dateofbirth"]{
+            dataArray.append("dateofbirth : " + (dateofbirth as? String ?? ""))
+        }
+        if let gender = param["gender"]{
+            dataArray.append("gender : " + (gender as? String ?? ""))
+        }
+        if let phonenumber = param["phonenumber"]{
+            dataArray.append("phonenumber : " + (phonenumber as? String ?? ""))
+        }
+        
+        if let panImageStr = param["panimage"]{
+            imageArray.append(convertBase64ToImage(inputString: panImageStr as? String ?? ""))
+        }
+        if let passportImageStr = param["passportimage"]{
+            imageArray.append(convertBase64ToImage(inputString: passportImageStr as? String ?? ""))
+        }
+        if let aadhaarFrontImageStr = param["aadhaarfrontimage"]{
+            imageArray.append(convertBase64ToImage(inputString: aadhaarFrontImageStr as? String ?? ""))
+        }
+        if let aadhaarBackImageStr = param["aadhaarbackimage"]{
+            imageArray.append(convertBase64ToImage(inputString: aadhaarBackImageStr as? String ?? ""))
+        }
+        if let voterFrontImageStr = param["voteridfrontimage"]{
+            imageArray.append(convertBase64ToImage(inputString: voterFrontImageStr as? String ?? ""))
+        }
+        if let voterBackImageStr = param["voteridbackimage"]{
+            imageArray.append(convertBase64ToImage(inputString: voterBackImageStr as? String ?? ""))
+        }
+        if let photo = param["photo"]{
+            imageArray.append(convertBase64ToImage(inputString: photo as? String ?? ""))
+        }
+    }
+    func convertBase64ToImage(inputString:String) -> UIImage{
+        let dataDecoded : Data = Data(base64Encoded: inputString, options: .ignoreUnknownCharacters)!
+        guard let convertedImage = UIImage(data: dataDecoded)else{return UIImage()}
+        return convertedImage
+    }
      
 ```     
 
