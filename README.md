@@ -92,9 +92,7 @@ UIApplication.shared.open(NSURL(string: url2!)! as URL, options: [:], completion
         }
     }
 ```
-## SDK Result
-
-- Add the below funtions to retrieve the documents Data.
+ Add the below funtions to retrieve the documents Data.
 - "dataArray" --> Where the name,address,dob,phone number,gender will reside
 - "imageArray" --> Where the images of PAN,passport,Aaadhaar,Voter ID,PHOTO will reside
 ```swift
@@ -163,7 +161,7 @@ UIApplication.shared.open(NSURL(string: url2!)! as URL, options: [:], completion
     }
      
 ```     
-
+## SDK Result
   
 ## Help
 
