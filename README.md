@@ -165,6 +165,7 @@ UIApplication.shared.open(NSURL(string: url2!)! as URL, options: [:], completion
   The data will reside in dataArray and imageArray.
   
   Sample Output:
+  
   dataArray --> 
   ```
   ["name : John smith", "address : 355,2ndfloor,5thmain,karnataka,560071", "dateofbirth : 09/03/1993", "gender : Male", "phonenumber : 9704258166"]
