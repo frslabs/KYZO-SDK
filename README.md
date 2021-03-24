@@ -58,13 +58,23 @@ UIApplication.shared.open(NSURL(string: url)! as URL, options: [:], completionHa
 - This opens up the KYZO App and asks to select documents to share.
 - Once user selects and share with enter PIN sucess in KYZO.
 - Response is sent to Demo SDK.
+
 #### Handling the result
-
+- This is used KYZO to share the data from KYZO to Demo SDK with JSON String
 ```swift
-
-
+let url1 = ("DemoSDK://"+kyzoSDKString).   // DemoSDK has requested the Documents so that property identifier["DemoSDK"] should be used here.
+let url2 = url1.addingPercentEncoding(withAllowedCharacters: (NSCharacterSet.urlQueryAllowed))
+UIApplication.shared.open(NSURL(string: url2!)! as URL, options: [:], completionHandler: nil)
 ``` 
-
+- Add this in Appdelegate of Demo SDK
+```swift
+var openUrl:NSURL?
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        self.openUrl = url as NSURL?
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "HANDLEOPENURL"), object: url)
+        return true
+    }
+```
 ## SDK Result
 
 ```swift
