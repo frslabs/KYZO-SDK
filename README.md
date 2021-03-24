@@ -50,12 +50,14 @@ Register the KYZO in Info.plist with the some custom name (Eg: KYZOApp) like bel
 ```
 
 ## Usage example
-
+Calling the function in Demo SDK to invoke KYZO App to select the Documents for share
 ```swift
-This is used in KYZO App with the.
-
-
+let url = ("KYZOApp://")
+UIApplication.shared.open(NSURL(string: url)! as URL, options: [:], completionHandler: nil)
 ```
+- This opens up the KYZO App and asks to select documents to share.
+- Once user selects and share with enter PIN sucess in KYZO.
+- Response is sent to Demo SDK.
 #### Handling the result
 
 ```swift
