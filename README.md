@@ -49,25 +49,6 @@ Register the KYZO in Info.plist with the some custom name (Eg: KYZOApp) like bel
 </array>
 ```
 
-Below property list is to be used to communicate between SDK and KYZO App:
-
-This is used in SDK with the registered name of KYZO.
-```
-<key>LSApplicationQueriesSchemes</key>
-<array>
-   <string>KYZOApp</string>
-</array>
-```
-
-This is used in KYZO App with the registered name of SDK.
-
-```
-<key>LSApplicationQueriesSchemes</key>
-<array>
-   <string>DemoSDK</string>
-</array>
-```
-
 ## Usage example
 
 ```swift
