@@ -163,6 +163,7 @@ UIApplication.shared.open(NSURL(string: url2!)! as URL, options: [:], completion
 ```     
 ## SDK Result
   The data will reside in dataArray and imageArray.
+  
   Sample Output:
   dataArray --> 
   ```
